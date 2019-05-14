@@ -48,7 +48,7 @@
     <Compile Include="Menu1.cs" />
     <Compile Include="Menu2.cs" />
     <Compile Include="MilkProduct.cs" />
-    <Compile Include="MySortedCollection.cs" />
+    <Compile Include="MySortedDictionary.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

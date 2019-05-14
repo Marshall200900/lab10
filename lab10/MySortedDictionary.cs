@@ -7,9 +7,32 @@ using System.Threading.Tasks;
 
 namespace lab10
 {
-    public class MySortedDictionary<K,T>:IEnumerable where K:IComparable where T:IComparable
+    public class MySortedDictionary<K,T>:IEnumerable, IEnumerator where K:IComparable
     {
+        public int position = -1;
         private int capacity;
+        public int Count
+        {
+            get
+            {
+                return dict.Count;
+            }
+            
+        }
+        public T Current
+        {
+            get
+            {
+                try
+                {
+                    return dict[GetKey(position)];
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    throw new InvalidOperationException();
+                }
+            }
+        }
         public int Capacity
         {
             get
@@ -52,29 +75,33 @@ namespace lab10
                 return list;
             }
         }
-        
 
-        
+        object IEnumerator.Current => Current;
+
         public MySortedDictionary()
         {
-            capacity = 10;
+            Capacity = 10;
+            dict = new Dictionary<K, T>(Capacity);
         }
         public MySortedDictionary(int capacity)
         {
-            this.capacity = capacity;
+            Capacity = capacity;
+            dict = new Dictionary<K, T>(Capacity);
         }
         public MySortedDictionary(MySortedDictionary<K, T> c)
         {
-            foreach(KeyValuePair<K, T> p in c)
+            dict = new Dictionary<K, T>(Capacity);
+            foreach (KeyValuePair<K, T> p in c)
             {
                 dict.Add(p.Key, p.Value);
             }
+           
         }
         public bool ContainsKey(K key)
         {
             foreach (KeyValuePair<K, T> p in dict)
             {
-                if(key.CompareTo(p.Key) == 0)
+                if(key.Equals(p.Key))
                 {
                     return true;
                 }
@@ -86,7 +113,7 @@ namespace lab10
         {
             foreach (KeyValuePair<K, T> p in dict)
             {
-                if (val.CompareTo(p.Value) == 0)
+                if (val.Equals(p.Value))
                 {
                     return true;
                 }
@@ -126,12 +153,13 @@ namespace lab10
         }
         public MySortedDictionary<K, T> Clone()
         {
-            return this;
+            MySortedDictionary<K, T> dict2 = new MySortedDictionary<K, T>(this);
+            return dict2;
             
         }
         public void Remove(T val)
         {
-            dict.Remove(dict.First(p => p.Value.CompareTo(val) == 0).Key);
+            dict.Remove(dict.First(p => p.Value.Equals(val)).Key);
         }
         public void RemoveAt(int index)
         {
@@ -140,6 +168,17 @@ namespace lab10
         public IEnumerator GetEnumerator()
         {
             return ((IEnumerable)dict).GetEnumerator();
+        }
+
+        public bool MoveNext()
+        {
+            position++;
+            return position < dict.Count;
+        }
+
+        public void Reset()
+        {
+            position = -1;
         }
     }
 }

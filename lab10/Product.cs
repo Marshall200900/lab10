@@ -36,7 +36,10 @@ namespace lab10
         {
             Console.WriteLine($"name = {Name}\ndepartment = {Department}\nexpiration date = {ExpDate}\nprice = {Price}\n");
         }
-
+        public override string ToString()
+        {
+            return $"name = {Name}\ndepartment = {Department}\nexpiration date = {ExpDate}\nprice = {Price}\n";
+        }
 
         public void SubtractDay()
         {

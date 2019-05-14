@@ -52,6 +52,10 @@ namespace lab10
         {
             Console.WriteLine($"name = {Name}\ndepartment = {Department}\nage = {age}\nprice = {Price}\n");
         }
+        public override string ToString()
+        {
+            return $"name = {Name}\ndepartment = {Department}\nage = {age}\nprice = {Price}\n";
+        }
 
         public override double FindWeight()
         {

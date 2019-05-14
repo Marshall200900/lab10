@@ -32,6 +32,10 @@ namespace lab10
         {
             Console.WriteLine($"name = {Name}\ndepartment = {Department}\nexpiration date = {ExpDate}\nfactory = {Factory}\nprice = {Price}\n");
         }
+        public override string ToString()
+        {
+            return $"name = {Name}\ndepartment = {Department}\nexpiration date = {ExpDate}\nfactory = {Factory}\nprice = {Price}\n";
+        }
 
         public object Clone()
         {

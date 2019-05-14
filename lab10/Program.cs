@@ -178,6 +178,40 @@ namespace lab10
 
             } while (answer != 11);
         }
+        private static void MenuCollection3()
+        {
+            MySortedDictionary<int, Goods> mydict = new MySortedDictionary<int, Goods>();
+            Console.WriteLine("Вместимость по умолчанию: "+mydict.Capacity);
+            MilkProduct pr = new MilkProduct(true);
+            MilkProduct pr2 = new MilkProduct(true);
+            mydict.Add(10, new Product(true));
+            mydict.Add(11, new Toy(true));
+            mydict.Add(1, pr);
+
+            foreach(KeyValuePair<int, Goods> p in mydict)
+            {
+                Console.WriteLine(p.Key + "\n" + p.Value);
+            }
+            Console.WriteLine("Содержит ли словарь ключ " + 10 + ": " + mydict.ContainsKey(10) + "\n" +
+                "Содержит ли словарь ключ " + 2 + ": " + mydict.ContainsKey(2));
+            Console.WriteLine("Содержит ли словарь значение \n" +pr+ "\n" + mydict.ContainsValue(pr)+
+                "\nСодержит ли словарь значение \n" + pr2 + "\n"+mydict.ContainsValue(pr2));
+            Console.WriteLine("Доступ к элементу по индексу\nИндекс: 1\nЭлемент: " + mydict.GetByIndex(1));
+            Console.WriteLine("Доступ к ключу по индексу\nИндекс: 1\nЭлемент: " + mydict.GetKey(1));
+            mydict.SetByIndex(2, new Product(true));
+            Console.WriteLine("Добавлен элемент по индексу 2");
+            foreach (KeyValuePair<int, Goods> p in mydict)
+            {
+                Console.WriteLine(p.Key + "\n" + p.Value);
+            }
+            mydict.RemoveAt(2);
+            Console.WriteLine("Удален элемент по индексу 2");
+            foreach (KeyValuePair<int, Goods> p in mydict)
+            {
+                Console.WriteLine(p.Key + "\n" + p.Value);
+            }
+
+        }
         static void Main(string[] args)
         {
             int answer = 0;
@@ -197,8 +231,11 @@ namespace lab10
                     case 2:
                         MenuCollection2();
                         break;
+                    case 3:
+                        MenuCollection3();
+                        break;
                 }
-            } while (answer != 3);
+            } while (answer != 4);
         }
     }
 }

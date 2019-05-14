@@ -43,7 +43,10 @@ namespace lab10
         {
             Console.WriteLine($"name = {Name}\ndepartment = {Department}\nprice = {Price}");
         }
-
+        public override string ToString()
+        {
+            return base.ToString();
+        }
         public abstract double FindWeight();
 
         public int CompareTo(object obj)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab10
 {
-    class Menu1
+    public class Menu1
     {
         private static Goods BinarySearchByPrice(Queue<Goods> g, int price)
         {
@@ -115,7 +115,7 @@ namespace lab10
                 }
             }
         }
-        static Queue<Goods> GenerateCollection(int size)
+        private static Queue<Goods> GenerateCollection(int size)
         {
             Queue<Goods> q = new Queue<Goods>(size);
             for (int i = 0; i < size; i++)
